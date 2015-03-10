@@ -4,10 +4,6 @@ module SurveyorControllerCustomMethods
   end
 
   def edit
-    root = File.expand_path('../../', __FILE__)
-    #place the surveyor_gui views ahead of the default surveyor view in order of preference
-    #so we can load customized partials.
-    prepend_view_path(root+'/views')
     super
   end
   def update
