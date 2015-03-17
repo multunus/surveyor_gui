@@ -21,6 +21,7 @@ module SurveyorGui
     def configurations
       replace_simple_forms_configuration_rb
       add_i18n_enforce_locales
+      add_additional_locales
     end
 
     def routes
@@ -50,8 +51,12 @@ module SurveyorGui
       #want to skip validation of your locale you can set I18n.enforce_available_locales
       #= false to avoid this message."
       inject_into_file "config/application.rb",
-        "config.i18n.enforce_available_locales = true",
-        :after => "config.encoding = \"utf-8\"\n"
+      "config.i18n.enforce_available_locales = true",
+      :after => "config.encoding = \"utf-8\"\n"
+    end
+
+    def add_additional_locales
+      template "config/locales/en.yml", "config/locales/en.yml"
     end
   end
 end

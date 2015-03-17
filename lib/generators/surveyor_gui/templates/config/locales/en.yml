@@ -1,5 +1,20 @@
 en:
-  activerecord:
-    attributes:
-      question:
-        text: "Question"
+  create:
+    success: Wizard created
+  edit:
+    error:
+      has_responses: Wizard has already collected responses, it cannot be modified
+    not_saved: Wizard cannot be saved    
+  update:
+    success: Changes saved succesfully
+    error: Changes are not saved
+  destroy:
+    success: Wizard destroyed
+    error:
+      has_responses: Wizard has already collected responses, it cannot be modified
+      cannot_be_deleted: Wizard cannot be deleted
+  clone:
+    success: Successfully cloned wizard
+    error: Could not clone wizard
+
+

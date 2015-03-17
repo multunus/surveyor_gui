@@ -10,11 +10,11 @@ module SurveyorGui
         template=false
       elsif params[:template]=='true'
         template=true
-		  else
-			  template=false
+      else
+        template=false
       end
       @title = "Manage " + (template ? "Templates" : "Surveys")
-	   	@surveyforms = Surveyform.where('template = ?',template).search(params[:search]).order(:title).paginate(:page => params[:page])
+      @surveyforms = Surveyform.where('template = ?',template).search(params[:search]).order(:title).paginate(:page => params[:page])
     end
 
     def new
@@ -82,7 +82,7 @@ module SurveyorGui
         redirect_to surveyforms_url
       else
         if @surveyform.response_sets.count > 0
-          flash[:error] = 'This survey has responses and can not be deleted' 
+          flash[:error] = 'This survey has responses and can not be deleted'
         else
           flash[:error] = 'Survey could not be deleted.'
         end
@@ -165,9 +165,9 @@ module SurveyorGui
     end
 
     def _make_room(paste_at, object_parent, object)
-       statement = "object_parent."+object.class.to_s.underscore.pluralize
-       collection = eval(statement)
-       collection.where('display_order >= ?',paste_at).update_all('display_order=display_order+1')
+      statement = "object_parent."+object.class.to_s.underscore.pluralize
+      collection = eval(statement)
+      collection.where('display_order >= ?',paste_at).update_all('display_order=display_order+1')
     end
 
     def _save_pasted_object(object, surveyform, session_id)
@@ -233,10 +233,10 @@ module SurveyorGui
         @question_no = 0
         render "_question_section" , :layout=> false
       rescue
-        render inline: "not found"  
+        render inline: "not found"
       end
     end
-     
+
     def clone_survey
       @title = "Clone Survey"
       @surveyform = SurveyCloneFactory.new(params[:id]).clone
@@ -247,7 +247,7 @@ module SurveyorGui
         flash[:error] = "Could not clone the survey, questionnaire, or form."
         render :action => 'new'
       end
-    end     
+    end
 
     private
     def surveyforms_params
