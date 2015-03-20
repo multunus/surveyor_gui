@@ -166,4 +166,3 @@ module SurveyorGui
     end
   end
 end
-
