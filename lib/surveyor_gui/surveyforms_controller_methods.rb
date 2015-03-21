@@ -239,7 +239,6 @@ module SurveyorGui
 
     def clone_survey
       @title = "Clone Survey"
-      binding.pry
       @surveyform = SurveyorGui::SurveyCloneFactory.new(params[:id]).clone
       if @surveyform.save
         flash[:notice] = "Successfully created survey, questionnaire, or form."
