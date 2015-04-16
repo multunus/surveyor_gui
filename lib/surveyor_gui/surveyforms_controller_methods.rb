@@ -76,7 +76,7 @@ module SurveyorGui
 
     def destroy
       @surveyform = Surveyform.find(params[:id])
-      @surveyform.destroy
+      @surveyform.destroy if @surveyform
       if !@surveyform
         flash[:notice] = "Successfully destroyed survey."
         redirect_to surveyforms_url
