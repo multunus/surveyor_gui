@@ -151,6 +151,7 @@ module SurveyorGui
           prep_not_picks('string')
         when 'signature'
           prep_not_picks('canvas')
+          write_attribute(:display_type, :canvas)
         end
         @question_type_id = type
       end
