@@ -313,7 +313,7 @@ module SurveyorGui
           [:group_inline,   "Inline Question Group"                           , true,   nil,   nil,       :inline,  :all],
           [:group_default,  "Question Group"                                  , true,   nil,   nil,       :default, :all],
           [:repeater,       "Repeater (multiple responses)"                   , true,   nil,  :all,       :repeater, :all],
-          [:signature,      "Signature"                                       , false,  :one,  :canvas,    nil,      :all],
+          [:signature,      "Signature"                                       , false,  :none,  :canvas,    nil,      :all],
           #nothing below here shows up on the question builder choices for question type
           [:pick_one,       "Multiple Choice (only one answer)"               , true,   :one,  "default", :inline,  :all],
           [:pick_any,       "Multiple Choice (multiple answers)"              , true,   :any,  "default", :inline,  :all],
