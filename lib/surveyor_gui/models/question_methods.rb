@@ -144,11 +144,13 @@ module SurveyorGui
         when 'time'
           prep_not_picks('time')
         when 'datetime'
-          prep_not_picks('datetime')          
+          prep_not_picks('datetime')
         when 'file'
           prep_not_picks('blob')
         when 'string'
           prep_not_picks('string')
+        when 'signature'
+          prep_not_picks('canvas')
         end
         @question_type_id = type
       end
