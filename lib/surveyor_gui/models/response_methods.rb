@@ -8,15 +8,17 @@ module SurveyorGui
         base.send :belongs_to, :column
         base.send :attr_accessible, :response_set, :question, :answer, :date_value, :time_value,
             :response_set_id, :question_id, :answer_id, :datetime_value, :integer_value, :float_value,
-            :unit, :text_value, :string_value, :response_other, :response_group, 
+            :unit, :text_value, :string_value, :response_other, :response_group,
             :survey_section_id, :blob, :column if defined? ActiveModel::MassAssignmentSecurity
         #belongs_to :user
 
         # after_destroy :delete_blobs!
         # after_destroy :delete_empty_dir
+        base.send :before_save, :generate_signature_image
 
         #extends response to allow file uploads.
         base.send :mount_uploader, :blob, BlobUploader
+        base.send :mount_uploader, :signature, SignatureUploader
       end
 
       VALUE_TYPE = ['float', 'integer', 'string', 'datetime', 'text']
@@ -42,6 +44,15 @@ module SurveyorGui
         end
       end
 
+      def generate_signature_image
+        unless self.signature.nil?
+          instructions = JSON.load(self.signature).map { |h| "line #{h['mx']},#{h['my']} #{h['lx']},#{h['ly']}" } * ' '
+          path_signature_image="tmp/signature_image"+DateTime.now.to_s+".png"
+          system "convert -size 300x65 xc:transparent -stroke black -draw '#{instructions}' #{path_signature_image}"
+          self.signature = File.open(path_signature_image)
+        end
+      end
+
     private
 
       def delete_blobs!
@@ -51,6 +62,7 @@ module SurveyorGui
 
       def delete_empty_dir
         FileUtils.rm_rf(File.join(Rails.root.to_s,'public',BlobUploader.store_dir))
+        FileUtils.rm_rf(File.join(Rails.root.to_s,'public',SignatureUploader.store_dir))
       end
 
       def _no_pick_value(response_class)
