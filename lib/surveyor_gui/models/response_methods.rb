@@ -47,13 +47,18 @@ module SurveyorGui
       def generate_signature_image
         unless self.signature.nil?
           instructions = JSON.load(self.signature).map { |h| "line #{h['mx']},#{h['my']} #{h['lx']},#{h['ly']}" } * ' '
-          path_signature_image= "public/signature_image"+DateTime.now.to_s+".png"
+          path_signature_image= 'tmp/'+"signature_image"+DateTime.now.to_s+".png"
           system "convert -size 300x65 xc:transparent -stroke black -draw '#{instructions}' #{path_signature_image}"
           self.signature_image = File.open(path_signature_image)
+          delete_temp_file(path_signature_image)
         end
       end
 
     private
+
+      def delete_temp_file(file)
+        FileUtils.rm(file)
+      end
 
       def delete_blobs!
           self.remove_blob!
