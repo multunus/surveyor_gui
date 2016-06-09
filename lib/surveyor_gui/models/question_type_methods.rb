@@ -306,6 +306,7 @@ module SurveyorGui
           [:slider,         "Slider"                                          , false,  :one,  :slider,   nil,      :all],
           [:stars,          "1-5 Stars"                                       , false,  :one,  :stars,    nil,      :all],
           [:label,          "Label"                                           , false,  :none, :label,    nil,      :all],
+          [:link,           "Link"                                            , false,  :none, :link,     nil,      :all],
           [:file,           "File Upload"                                     , false,  :none, "default", nil,      :blob],
           [:grid_one,       "Grid (pick one)"                                 , true,   :one,  "default", :grid,    :all],
           [:grid_any,       "Grid (pick any)"                                 , true,   :any,  "default", :grid,    :all],

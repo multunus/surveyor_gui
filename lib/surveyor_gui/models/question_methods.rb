@@ -135,6 +135,9 @@ module SurveyorGui
         when 'label'
           write_attribute(:pick, "none")
           write_attribute(:display_type, "label")
+        when 'link'
+          write_attribute(:pick, "none")
+          write_attribute(:display_type, "link")
         when 'box'
           prep_not_picks('text')
         when 'number'
